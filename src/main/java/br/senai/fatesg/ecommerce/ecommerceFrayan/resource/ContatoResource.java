@@ -1,7 +1,9 @@
 package br.senai.fatesg.ecommerce.ecommerceFrayan.resource;
 
 import br.senai.fatesg.ecommerce.ecommerceFrayan.Interface.IResource;
+import br.senai.fatesg.ecommerce.ecommerceFrayan.model.Contato;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.model.Pessoa;
+import br.senai.fatesg.ecommerce.ecommerceFrayan.service.ContatoService;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.service.PessoaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +14,20 @@ import java.util.List;
 
 @Slf4j //responsável pelo log da classe
 @RestController //indica o uso de API
-@RequestMapping(value = "api/v1/pessoa")
-public class ContatoResource implements IResource<Pessoa, Integer> {
+@RequestMapping(value = "api/v1/contato")
+public class ContatoResource implements IResource<Contato, Integer> {
 
     @Autowired //injeção de dependência
-    private PessoaService alunoService;
+    private ContatoService contatoService;
 
     @PostMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
     @Override
-    public Pessoa create(@RequestBody Pessoa entity) {
-        log.info("Acessando método PessoaResource.create");
-        log.debug("PessoaResource | valor recebido: {}", entity);
+    public Contato create(@RequestBody Contato entity) {
+        log.info("Acessando método ContatoResource.create");
+        log.debug("ContatoResource | valor recebido: {}", entity);
         return null;
     }
 
@@ -33,8 +35,8 @@ public class ContatoResource implements IResource<Pessoa, Integer> {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     @Override
-    public List<Pessoa> read() {
-        log.info("Acessando método PessoaResource.read()");
+    public List<Contato> read() {
+        log.info("Acessando método ContatoResource.read()");
         log.debug("A consulta retornou {} registros", 0);
 
         return null;
@@ -46,23 +48,23 @@ public class ContatoResource implements IResource<Pessoa, Integer> {
      * @param id
      * @return
      */
-    /*@GetMapping(
+    @GetMapping(
             name = "/{valor1}/{valor2}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @Override
-    public Aluno read(@PathVariable("valor1") Integer id,
+    /*@Override
+    public Contato read(@PathVariable("valor1") Integer id,
                       @PathVariable("valor2") Integer xpto) {
         return null;
-    }*/
+    }
 
     @GetMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
+    )*/
     @Override
-    public Pessoa read(@PathVariable Integer id) {
-        log.info("Acessando método PessoaResource.get(id)");
+    public Contato read(@PathVariable Integer id) {
+        log.info("Acessando método ContatoResource.get(id)");
         log.debug("Valor de pesquisa: {}", id);
         return null;
     }
@@ -73,10 +75,10 @@ public class ContatoResource implements IResource<Pessoa, Integer> {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     @Override
-    public Pessoa update(@PathVariable Integer id,
-                        @RequestBody Pessoa entity) {
+    public Contato update(@PathVariable Integer id,
+                        @RequestBody Contato entity) {
 
-        log.info("Acessando método PessoaResource.update(id,entity)");
+        log.info("Acessando método ContatoResource.update(id,entity)");
         log.debug("Valores recebidos: id - {}, entity: {}", id,entity);
 
         return null;
@@ -85,7 +87,7 @@ public class ContatoResource implements IResource<Pessoa, Integer> {
     @DeleteMapping(value = "/{id}")
     @Override
     public void delete(@PathVariable Integer id) {
-        log.info("Acessando método PessoaResource.delete");
+        log.info("Acessando método ContatoResource.delete");
         log.debug("Valor recebido: id - {}",id);
 
     }

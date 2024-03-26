@@ -14,7 +14,7 @@ import java.util.List;
 @RestController //indica o uso de API
 @RequestMapping(value = "api/v1/pessoa")
 public class PessoaResource implements IResource<Pessoa, Integer> {
-    
+
     @Autowired //injeção de dependência
     private PessoaService pessoaService;
 

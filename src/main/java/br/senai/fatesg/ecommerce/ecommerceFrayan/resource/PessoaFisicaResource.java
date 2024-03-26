@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j //responsável pelo log da classe
 @RestController //indica o uso de API
-@RequestMapping(value = "api/v1/pessoa")
+@RequestMapping(value = "api/v1/pessoafisica")
 public class PessoaFisicaResource implements IResource<PessoaFisica, Integer> {
 
     @Autowired //injeção de dependência
