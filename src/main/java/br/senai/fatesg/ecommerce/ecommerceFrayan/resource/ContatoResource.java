@@ -2,9 +2,7 @@ package br.senai.fatesg.ecommerce.ecommerceFrayan.resource;
 
 import br.senai.fatesg.ecommerce.ecommerceFrayan.Interface.IResource;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.model.Contato;
-import br.senai.fatesg.ecommerce.ecommerceFrayan.model.Pessoa;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.service.ContatoService;
-import br.senai.fatesg.ecommerce.ecommerceFrayan.service.PessoaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

@@ -1,11 +1,7 @@
 package br.senai.fatesg.ecommerce.ecommerceFrayan.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 @Data
@@ -18,5 +14,6 @@ public class Email extends BaseModel {
     private LocalDateTime dataInicio;
     @Column(name = "Data_Fim", nullable = false)
     private LocalDateTime dataFim;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Contato contato;
 }
