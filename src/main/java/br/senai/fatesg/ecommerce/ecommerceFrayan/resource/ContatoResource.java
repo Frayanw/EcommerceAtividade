@@ -40,26 +40,10 @@ public class ContatoResource implements IResource<Contato, Integer> {
         return null;
     }
 
-    /**
-     * @GetMapping("/{id}") => @PathVariable
-     * GET http://localhost:8081/api/v1/pessoa/{id}
-     * @param id
-     * @return
-     */
     @GetMapping(
             name = "/{valor1}/{valor2}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    /*@Override
-    public Contato read(@PathVariable("valor1") Integer id,
-                      @PathVariable("valor2") Integer xpto) {
-        return null;
-    }
-
-    @GetMapping(
-            value = "/{id}",
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )*/
     @Override
     public Contato read(@PathVariable Integer id) {
         log.info("Acessando método ContatoResource.get(id)");
