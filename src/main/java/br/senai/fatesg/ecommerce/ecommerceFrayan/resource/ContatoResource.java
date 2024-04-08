@@ -1,76 +1,96 @@
 package br.senai.fatesg.ecommerce.ecommerceFrayan.resource;
 
+
 import br.senai.fatesg.ecommerce.ecommerceFrayan.Interface.IResource;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.model.Contato;
 import br.senai.fatesg.ecommerce.ecommerceFrayan.service.ContatoService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@Slf4j //responsável pelo log da classe
-@RestController //indica o uso de API
-@RequestMapping(value = "api/v1/contato")
+@Slf4j
+@RestController
+@RequestMapping("/api/v1/contato")
 public class ContatoResource implements IResource<Contato, Integer> {
 
-    @Autowired //injeção de dependência
-    private ContatoService contatoService;
 
+    @Autowired
+    ContatoService contatoService;
+
+    @Override
     @PostMapping(
-            produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE}
-    )
-    @Override
-    public Contato create(@RequestBody Contato entity) {
-        log.info("Acessando método ContatoResource.create");
-        log.debug("ContatoResource | valor recebido: {}", entity);
-        return null;
-    }
-
-    @GetMapping(
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @Override
-    public List<Contato> read() {
-        log.info("Acessando método ContatoResource.read()");
-        log.debug("A consulta retornou {} registros", 0);
-
-        return null;
+    public Contato create(@Valid @RequestBody Contato entity) {
+        log.info("Resource: {}, método: {}",
+                ContatoService.class.getCanonicalName(),
+                ContatoService.class.getEnclosingMethod().getName());
+        return contatoService.create(entity);
     }
 
-    @GetMapping(
-            name = "/{valor1}/{valor2}",
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
     @Override
+    @GetMapping(
+            value = "/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public Contato read(@PathVariable Integer id) {
-        log.info("Acessando método ContatoResource.get(id)");
-        log.debug("Valor de pesquisa: {}", id);
-        return null;
+        return contatoService.read(id);
     }
 
+    @Override
+    @GetMapping(
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public List<Contato> readAll() {
+        log.info("Resource: {}, método: {}",
+                ContatoService.class.getCanonicalName(),
+                ContatoService.class.getEnclosingMethod().getName());
+
+        return contatoService.readAll();
+    }
+
+    @Override
+    @PatchMapping(
+            value = "/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Contato updatePart(@PathVariable Integer id,
+                              @Valid @RequestBody Contato entity) {
+        log.info("Resource: {}, método: {}",
+                ContatoService.class.getCanonicalName(),
+                ContatoService.class.getEnclosingMethod().getName());
+
+        return contatoService.updatePart(id, entity);
+    }
+
+    @Override
     @PutMapping(
             value = "/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @Override
-    public Contato update(@PathVariable Integer id,
-                        @RequestBody Contato entity) {
+    public Contato updateAll(@PathVariable Integer id,
+                             @Valid @RequestBody Contato entity) {
+        log.info("Resource: {}, método: {}",
+                ContatoService.class.getCanonicalName(),
+                ContatoService.class.getEnclosingMethod().getName());
 
-        log.info("Acessando método ContatoResource.update(id,entity)");
-        log.debug("Valores recebidos: id - {}, entity: {}", id,entity);
-
-        return null;
+        return contatoService.updateAll(id,entity);
     }
-
-    @DeleteMapping(value = "/{id}")
     @Override
+    @DeleteMapping(
+            value = "/{id}"
+    )
     public void delete(@PathVariable Integer id) {
-        log.info("Acessando método ContatoResource.delete");
-        log.debug("Valor recebido: id - {}",id);
+        log.info("Resource: {}, método: {}",
+                ContatoService.class.getCanonicalName(),
+                ContatoService.class.getEnclosingMethod().getName());
+
+        contatoService.delete(id);
 
     }
 }

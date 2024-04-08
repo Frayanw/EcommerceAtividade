@@ -12,17 +12,19 @@ import java.util.List;
  *
  * @see <a href="https://docs.oracle.com/javase/tutorial/java/generics/types.html">Documentação Generics</a>
  */
-public interface    GenericOperations<T, N> {
+public interface GenericOperations<T, N> {
 
-    T create(T entity);
+    public T create(T entity);
 
-    List<T> read();
+    public T read( N id);
 
-    T read(N id);
+    public List<T> readAll();
 
-    T update(N id, T entity);
+    //PATCH
+    public T updatePart(N id, T entity);
 
-    void delete(N id);
+    //PUT
+    public T updateAll(N id, T entity);
 
+    public void delete(N id);
 }
-
